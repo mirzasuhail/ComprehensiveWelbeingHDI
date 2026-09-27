@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Temporary / Binary Download Files
+ngrok.exe
+ngrok.zip
+data/raw_undp.csv
+
+# Environment Variables & Secrets
+.env
+.env.local
+*.log
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+*.old

@@ -1,0 +1,25 @@
+{
+    "model_name": "Linear Regression",
+    "mae": 0.0149,
+    "rmse": 0.0202,
+    "r2": 0.9807,
+    "dataset_samples": 204,
+    "feature_names": [
+        "Life_Expectancy",
+        "Expected_Years_of_Schooling",
+        "Mean_Years_of_Schooling",
+        "GNI_per_Capita"
+    ],
+    "coefficients": {
+        "Life_Expectancy": 0.006971,
+        "Expected_Years_of_Schooling": 0.01192,
+        "Mean_Years_of_Schooling": 0.019136,
+        "GNI_per_Capita": 1e-06
+    },
+    "intercept": -0.127904,
+    "benchmark_random_forest": {
+        "mae": 0.0141,
+        "rmse": 0.0201,
+        "r2": 0.9809
+    }
+}

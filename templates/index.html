@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDI Insight — Understand development through data.</title>
+    <meta name="description" content="Human Development Index Prediction System built with machine learning and NLPxAI design thinking.">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- NLPxAI Ambient Background (Noise Texture + Floating Blur Blobs) -->
+    <div class="ambient-background">
+        <!-- SVG Fractal Noise Texture Overlay -->
+        <div class="noise-overlay"></div>
+
+        <!-- Top Left Soft Blob -->
+        <div class="blob blob-1"></div>
+
+        <!-- Top Right Ambient Glow -->
+        <div class="blob blob-2"></div>
+
+        <!-- Center Bottom Ambient Accent -->
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-layout">
+        <!-- Top Navigation Bar -->
+        <header class="navbar">
+            <div class="nav-container">
+                <a href="/" class="brand-link">
+                    <span class="brand-text"><span class="brand-heavy">HDI</span><span class="brand-light">Insight</span></span>
+                </a>
+                <div class="status-pill">
+                    <span class="status-dot"></span>
+                    <span class="status-label">Linear Regression • R² {{ metrics.r2 }}</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Stream -->
+        <main class="main-container">
+            
+            <!-- HERO HEADER SECTION -->
+            <section class="hero-section">
+                <div class="badge-tag">SOCIOECONOMIC DATA INTELLIGENCE</div>
+                <h1 class="hero-heading">
+                    Human Development<br>
+                    <span class="hero-highlight">Index Prediction</span>
+                </h1>
+                <p class="hero-tagline">
+                    Understand development through data.
+                </p>
+                <p class="hero-subtitle">
+                    Estimate population well-being from four core socioeconomic dimensions using a supervised machine learning model.
+                </p>
+            </section>
+
+            <!-- CORE DIMENSIONS & INDEX SCALE CARD -->
+            <section class="overview-grid">
+                <!-- 3 Pillars Info Card -->
+                <div class="instrument-card pillars-box">
+                    <div class="card-header-sm">
+                        <span class="card-tag">THREE PILLARS OF HDI</span>
+                    </div>
+                    <div class="pillars-list">
+                        <div class="pillar-item">
+                            <span class="pillar-bullet bullet-health"></span>
+                            <div class="pillar-content">
+                                <span class="pillar-name">HEALTH</span>
+                                <span class="pillar-sub">Life expectancy at birth</span>
+                            </div>
+                        </div>
+                        <div class="pillar-item">
+                            <span class="pillar-bullet bullet-education"></span>
+                            <div class="pillar-content">
+                                <span class="pillar-name">EDUCATION</span>
+                                <span class="pillar-sub">Expected & mean schooling years</span>
+                            </div>
+                        </div>
+                        <div class="pillar-item">
+                            <span class="pillar-bullet bullet-living"></span>
+                            <div class="pillar-content">
+                                <span class="pillar-name">STANDARD OF LIVING</span>
+                                <span class="pillar-sub">Gross National Income per capita</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integrated HDI 0-1 Scale Card -->
+                <div class="instrument-card scale-box">
+                    <div class="card-header-sm">
+                        <span class="card-tag">HDI INDEX SCALE</span>
+                        <span class="scale-range-label">0.000 → 1.000</span>
+                    </div>
+                    <div class="mini-scale-wrapper">
+                        <div class="mini-scale-endpoints">
+                            <span>0.0</span>
+                            <span>0.5</span>
+                            <span>1.0</span>
+                        </div>
+                        <div class="mini-scale-track">
+                            <div class="mini-scale-fill"></div>
+                        </div>
+                        <div class="mini-scale-tiers">
+                            <span class="tier-low">Low</span>
+                            <span class="tier-medium">Medium</span>
+                            <span class="tier-high">High</span>
+                            <span class="tier-very-high">Very High</span>
+                        </div>
+                    </div>
+                    <p class="scale-note">
+                        "The closer the index score is to <strong>1.0</strong>, the higher the level of human development."
+                    </p>
+                </div>
+            </section>
+
+            <!-- PREDICTION WORKSPACE (NUMBERED INSTRUMENT FORM) -->
+            <section class="workspace-section" id="workspace">
+                <div class="instrument-card form-instrument">
+                    <div class="instrument-title-bar">
+                        <div class="title-meta">
+                            <span class="instrument-heading">ESTIMATE HDI</span>
+                            <span class="instrument-sub">Enter the four indicators below</span>
+                        </div>
+                    </div>
+
+                    <form id="hdiForm" class="instrument-form" novalidate>
+                        <div class="rows-container">
+
+                            <!-- Row 01: Life Expectancy -->
+                            <div class="form-row">
+                                <div class="row-meta">
+                                    <span class="row-num">01</span>
+                                    <div class="row-labels">
+                                        <label for="life_expectancy" class="row-title">Life expectancy</label>
+                                        <span class="row-microcopy">Average number of years a person is expected to live</span>
+                                    </div>
+                                </div>
+                                <div class="row-input-group">
+                                    <input type="number" id="life_expectancy" name="life_expectancy" 
+                                           step="0.1" min="20.0" max="110.0" placeholder="72.4" required>
+                                    <span class="unit-tag">years</span>
+                                </div>
+                            </div>
+
+                            <!-- Row 02: Expected Schooling -->
+                            <div class="form-row">
+                                <div class="row-meta">
+                                    <span class="row-num">02</span>
+                                    <div class="row-labels">
+                                        <label for="expected_schooling" class="row-title">Expected years of schooling</label>
+                                        <span class="row-microcopy">Expected duration of education for a child entering school</span>
+                                    </div>
+                                </div>
+                                <div class="row-input-group">
+                                    <input type="number" id="expected_schooling" name="expected_schooling" 
+                                           step="0.1" min="0.0" max="30.0" placeholder="13.8" required>
+                                    <span class="unit-tag">years</span>
+                                </div>
+                            </div>
+
+                            <!-- Row 03: Mean Schooling -->
+                            <div class="form-row">
+                                <div class="row-meta">
+                                    <span class="row-num">03</span>
+                                    <div class="row-labels">
+                                        <label for="mean_schooling" class="row-title">Mean years of schooling</label>
+                                        <span class="row-microcopy">Average education completed by adults aged 25+</span>
+                                    </div>
+                                </div>
+                                <div class="row-input-group">
+                                    <input type="number" id="mean_schooling" name="mean_schooling" 
+                                           step="0.1" min="0.0" max="30.0" placeholder="9.6" required>
+                                    <span class="unit-tag">years</span>
+                                </div>
+                            </div>
+
+                            <!-- Row 04: GNI per Capita -->
+                            <div class="form-row">
+                                <div class="row-meta">
+                                    <span class="row-num">04</span>
+                                    <div class="row-labels">
+                                        <label for="gni_per_capita" class="row-title">GNI per capita</label>
+                                        <span class="row-microcopy">Income-related indicator representing living standard</span>
+                                    </div>
+                                </div>
+                                <div class="row-input-group">
+                                    <input type="number" id="gni_per_capita" name="gni_per_capita" 
+                                           step="1" min="100" max="250000" placeholder="18450" required>
+                                    <span class="unit-tag">PPP $</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Data Origin Expandable Accordion -->
+                        <details class="source-accordion">
+                            <summary class="accordion-header">
+                                <span class="accordion-title">Where do these numbers come from?</span>
+                                <span class="accordion-arrow">↓</span>
+                            </summary>
+                            <div class="accordion-body">
+                                <p>
+                                    These indicators are normally obtained from national development datasets and statistical sources. For this academic project, the model is trained using the official dataset sourced from the <strong>United Nations Development Programme (UNDP) Human Development Report</strong> (204 country observations).
+                                </p>
+                            </div>
+                        </details>
+
+                        <!-- Error Alert Box -->
+                        <div id="errorBanner" class="error-banner hidden">
+                            <span class="error-symbol">⚠️</span>
+                            <span id="errorText">Invalid indicator input detected.</span>
+                        </div>
+
+                        <!-- Action Submit Button -->
+                        <div class="form-action-bar">
+                            <button type="submit" id="submitBtn" class="send-btn">
+                                <span id="btnText">Estimate HDI</span>
+                                <span class="send-arrow">→</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- RESULT DISPLAY STAGE (ANIMATES ON PREDICTION) -->
+            <section id="resultSection" class="result-section hidden">
+                <div class="instrument-card result-instrument">
+                    <div class="result-top">
+                        <span class="result-eyebrow">ESTIMATED HDI</span>
+                        <span id="tierBadge" class="tier-badge tier-high">HIGH HUMAN DEVELOPMENT</span>
+                    </div>
+
+                    <!-- Huge Animated Score Number -->
+                    <div class="score-container">
+                        <div id="scoreValue" class="score-number">0.000</div>
+                        <div class="score-caption">Human Development Index Score</div>
+                    </div>
+
+                    <!-- Interactive Spectrum Scale Result -->
+                    <div class="result-scale-box">
+                        <div class="scale-pointer-bar">
+                            <div id="resultSpectrumFill" class="spectrum-fill-line"></div>
+                            <div id="resultPointerMarker" class="spectrum-marker-dot" style="left: 0%;">
+                                <div class="marker-pulse"></div>
+                                <div id="markerLabel" class="marker-val-tag">0.000</div>
+                            </div>
+                        </div>
+                        <div class="spectrum-ticks-label">
+                            <span>0.000</span>
+                            <span>0.500</span>
+                            <span>1.000</span>
+                        </div>
+                    </div>
+
+                    <!-- Input Profile Summary -->
+                    <div class="input-profile-card">
+                        <div class="profile-header">INPUT PROFILE</div>
+                        <div class="profile-grid">
+                            <div class="profile-col">
+                                <span class="profile-lbl">Life expectancy</span>
+                                <span id="resLife" class="profile-val">0.0 yrs</span>
+                            </div>
+                            <div class="profile-col">
+                                <span class="profile-lbl">Expected schooling</span>
+                                <span id="resExp" class="profile-val">0.0 yrs</span>
+                            </div>
+                            <div class="profile-col">
+                                <span class="profile-lbl">Mean schooling</span>
+                                <span id="resMean" class="profile-val">0.0 yrs</span>
+                            </div>
+                            <div class="profile-col">
+                                <span class="profile-lbl">GNI per capita</span>
+                                <span id="resGni" class="profile-val">$0 PPP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Model Performance Metrics -->
+                    <div class="model-metrics-card">
+                        <div class="metrics-header-row">
+                            <span class="metrics-title">MODEL PERFORMANCE</span>
+                            <span class="model-name">Linear Regression</span>
+                        </div>
+                        <div class="metrics-stats-grid">
+                            <div class="stat-box">
+                                <span class="stat-key">R² Score</span>
+                                <span class="stat-val highlight">{{ metrics.r2 }}</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-key">RMSE</span>
+                                <span class="stat-val">{{ metrics.rmse }}</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-key">MAE</span>
+                                <span class="stat-val">{{ metrics.mae }}</span>
+                            </div>
+                        </div>
+                        <p class="metrics-note">
+                            Actual metrics evaluated on test data during development ($N = {{ metrics.dataset_samples }}$).
+                        </p>
+                    </div>
+
+                    <!-- Educational Context & Disclaimer -->
+                    <div class="disclaimer-note">
+                        <span class="disclaimer-lbl">About this estimate:</span>
+                        <p class="disclaimer-body">
+                            Estimated using a supervised machine learning regression model. Not an official United Nations HDI calculation or formal development assessment.
+                        </p>
+                    </div>
+
+                    <!-- Reset Action Button -->
+                    <div class="result-action-bar">
+                        <button type="button" id="resetBtn" class="reset-btn">
+                            <span>← New prediction</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <span class="footer-brand"><span class="brand-heavy">HDI</span>Insight</span>
+                <span class="footer-sep">•</span>
+                <span class="footer-desc">Human Development Index Prediction System</span>
+                <span class="footer-sep">•</span>
+                <span class="footer-sub">Academic ML Project</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
